@@ -1,0 +1,22 @@
+version: '3'
+services:
+  uploader:
+   entrypoint: 
+      - /go/bin/transfersh
+      -  --provider local 
+      - --basedir /tmp
+      - --listener :8080
+      - --http-auth-user $TRANSFER_USER 
+      - --http-auth-pass $TRANSFER_PASSWORD
+   image: kcapd/publisher
+   restart: always
+   environment:
+      - TRANSFER_USER="user"
+      - TRANSFER_PASSWORD="secret"
+   restart: always
+   volumes:
+      - files:/files
+   ports:
+      - "7072:80"
+volumes:
+   files:
