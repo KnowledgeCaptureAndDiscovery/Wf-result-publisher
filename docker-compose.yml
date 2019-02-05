@@ -6,7 +6,7 @@ services:
    restart: always
    volumes:
       - files:/files
-      - dist:/web
+      - ./dist:/web
    ports:
       - "7071:8080"
 volumes:
